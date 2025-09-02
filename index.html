@@ -237,13 +237,23 @@
             color: var(--soma-border);
         }
 
-        .total-inc {
-            color: var(--inc-border);
+        .btnZerar {
+            background-color: var(--success);
+            width: 100%;
+            height: 50px;
+            color: white;
+            margin-top: 10px;
+            border-radius: var(--radius);
+            font-size: 1.6rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
         }
 
-        .saldo {
-            color: var(--primary);
-        }
 
         @keyframes fadeIn {
             from {
@@ -302,6 +312,8 @@
                     </div>
                 </div>
             </div>
+
+            <button class="btnZerar">Zerar</button>
         </main>
     </div>
 
@@ -344,6 +356,12 @@
                 const updatedItems = items.filter(item => item.id !== id);
                 return this.saveData(updatedItems);
             }
+
+            clearItems() {
+                const items = this.getData();
+                const updatedItems = [];
+                return this.saveData(updatedItems);
+            }
         }
 
         class UI {
@@ -352,6 +370,7 @@
                 this.domElements = {
                     btnAdd: document.querySelector('.btn-add'),
                     btnInc: document.querySelector('.btn-inc'),
+                    btnZera: document.querySelector('.btnZerar'),
                     containerItems: document.querySelector('.container-items'),
                     inputValue: document.querySelector('.input-value'),
                     totalSoma: document.querySelector('.total-soma'),
@@ -443,6 +462,11 @@
                         this.renderItems();
                     }
                 });
+
+                this.domElements.btnZera.addEventListener('click', () => {
+                    this.dataManager.clearItems();
+                    this.renderItems();
+                })
 
                 // Permitir adicionar com a tecla Enter
                 this.domElements.inputValue.addEventListener('keypress', (e) => {
