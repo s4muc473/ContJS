@@ -422,7 +422,10 @@
                 const deleteBtn = itemElement.querySelector('.btnDelete');
                 deleteBtn.addEventListener('click', () => {
                     this.dataManager.deleteItem(item.id);
+                    const value = item.value;
+                    location.reload();
                     this.renderItems();
+                
                 });
 
                 this.domElements.containerItems.appendChild(itemElement);
@@ -467,7 +470,7 @@
                     this.dataManager.clearItems();
                     this.renderItems();
 
-                    this.domElements.totalSoma.textContent = `R$ ${totalSoma.toFixed(2)}`;
+                    location.reload();
                 })
 
                 // Permitir adicionar com a tecla Enter
