@@ -466,6 +466,8 @@
                 this.domElements.btnZera.addEventListener('click', () => {
                     this.dataManager.clearItems();
                     this.renderItems();
+
+                    this.domElements.totalSoma.textContent = `R$ ${totalSoma.toFixed(2)}`;
                 })
 
                 // Permitir adicionar com a tecla Enter
